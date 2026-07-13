@@ -1,4 +1,4 @@
 #!/usr/local/bin/python
 
-for i in range(0,10):
-  print ("Hello World in", i)
+for i in range(1,10):
+    print ("Hello World in loop", i)
