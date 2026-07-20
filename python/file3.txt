@@ -1,0 +1,8 @@
+with open("sample.txt", "w") as file:
+  file.write("hello world \n")
+  file.write("hello mahesh/n")
+with open("sample.txt", "r") as file:
+  content= file.read()
+  print(content)
+
+file.close()
