@@ -22,7 +22,7 @@ pipeline {
             steps{
                 sh '''
                     ls ${WORKSPACE}
-                    python ${WORKSPACE}/python/script.py
+                    python3 ${WORKSPACE}/python/script.py
                     echo "Deployment is successful"
                 '''
             }
