@@ -21,6 +21,8 @@ pipeline {
         stage('deploy'){
             steps{
                 sh '''
+                    ls ${WORKSPACE}
+                    python ${WORKSPACE}/python/script.py
                     echo "Deployment is successful"
                 '''
             }
