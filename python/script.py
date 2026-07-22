@@ -1,3 +1,4 @@
 #!/usr/local/bin/python
 
-print("New Script")
+for i in range(0,10):
+  print("Hello World", i)
