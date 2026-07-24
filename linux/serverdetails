@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+
+    environment {
+        SERVICE_NAME = "YourMasterServiceName"
+    }
+
+    stages {
+
+        stage('Get Windows Server Details') {
+            steps {
+                bat '''
+                echo ===== Host Details =====
+                hostname
+                systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+
+                echo.
+                echo ===== CPU and Memory Details =====
+                wmic cpu get name
+                wmic OS get TotalVisibleMemorySize,FreePhysicalMemory
+
+                echo.
+                echo ===== Disk Details =====
+                wmic logicaldisk get caption,freespace,size
+                '''
+            }
+        }
+
+        stage('Check Master Service Status') {
+            steps {
+                bat '''
+                echo ===== Service Status =====
+                sc query %SERVICE_NAME%
+                '''
+            }
+        }
+
+        stage('Get Service Configuration') {
+            steps {
+                bat '''
+                echo ===== Service Details =====
+                sc qc %SERVICE_NAME%
+                '''
+            }
+        }
+
+        stage('Collect Service Logs') {
+            steps {
+                bat '''
+                echo ===== Recent Event Logs =====
+                wevtutil qe System /c:20 /f:text
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Windows master service details collection completed."
+        }
+    }
+}
