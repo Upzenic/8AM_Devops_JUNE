@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+    stages{
+        stage('stage 1'){
+            steps{
+                sh '''
+                echo "this is stage one"
+                '''
+            }
+        }
+        stage('stage 2'){
+            steps{
+                sh '''
+                    echo "stage 2 is completed"
+                '''
+            }
+        }
+        stage('stage 3'){
+            steps{
+                sh '''
+                    ls ${WORKSPACE}
+                    python ${WORKSPACE}/python/serverdetails.py
+                    echo "Server details fetched"
+                '''
+            }
+        }
+    }
+}
