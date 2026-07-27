@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Stage 1') {
+            steps {
+                bat '''
+                @echo on
+                echo Stage 1 Started
+                hostname
+                '''
+            }
+        }
+
+        stage('Stage 2') {
+            steps {
+                bat '''
+                @echo on
+                echo Stage 2 Started
+                whoami
+                '''
+            }
+        }
+    }
+}
