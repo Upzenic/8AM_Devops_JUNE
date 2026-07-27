@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('User Input') {
+            steps {
+                script {
+                    def name = input message: 'Enter your name',
+                    parameters: [string(name: 'NAME', defaultValue: '', description: 'Name')]
+
+                    if (name == "") {
+                        error "Name cannot be empty!"
+                    } else {
+                        echo "Welcome ${name}"
+                    }
+                }
+            }
+        }
+    }
+}
