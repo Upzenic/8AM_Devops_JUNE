@@ -5,37 +5,52 @@ pipeline {
         stage('Find Master Server Details') {
             steps {
                 bat '''
-                echo "===== Master Server Details ====="
-                echo "Hostname:"
+                @echo off
+
+                echo ================================
+                echo Jenkins Master Server Details
+                echo ================================
+
+                echo.
+                echo Computer Name:
                 hostname
 
-                echo ""
-                echo "Current User:"
+                echo.
+                echo Current User:
                 whoami
 
-                echo ""
-                echo "Current Date and Time:"
-                date
+                echo.
+                echo Current Date and Time:
+                date /t
+                time /t
 
-                echo ""
-                echo "Operating System:"
-                uname -a
+                echo.
+                echo Operating System:
+                systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
 
-                echo ""
-                echo "IP Address:"
-                hostname -I
+                echo.
+                echo IP Address:
+                ipconfig | findstr "IPv4"
 
-                echo ""
-                echo "Memory Usage:"
-                free -h
+                echo.
+                echo Memory Details:
+                systeminfo | findstr /C:"Total Physical Memory" /C:"Available Physical Memory"
 
-                echo ""
-                echo "Disk Usage:"
-                df -h
+                echo.
+                echo Disk Details:
+                wmic logicaldisk get caption,freespace,size
 
-                echo ""
-                echo "CPU Information:"
-                lscpu
+                echo.
+                echo Jenkins Home:
+                echo %JENKINS_HOME%
+
+                echo.
+                echo Java Version:
+                java -version
+
+                echo.
+                echo Git Version:
+                git --version
                 '''
             }
         }
