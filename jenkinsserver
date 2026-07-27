@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Find Master Server Details') {
+            steps {
+                bat '''
+                echo "===== Master Server Details ====="
+                echo "Hostname:"
+                hostname
+
+                echo ""
+                echo "Current User:"
+                whoami
+
+                echo ""
+                echo "Current Date and Time:"
+                date
+
+                echo ""
+                echo "Operating System:"
+                uname -a
+
+                echo ""
+                echo "IP Address:"
+                hostname -I
+
+                echo ""
+                echo "Memory Usage:"
+                free -h
+
+                echo ""
+                echo "Disk Usage:"
+                df -h
+
+                echo ""
+                echo "CPU Information:"
+                lscpu
+                '''
+            }
+        }
+    }
+}
