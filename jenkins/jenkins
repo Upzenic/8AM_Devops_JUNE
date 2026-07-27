@@ -19,7 +19,7 @@ pipeline{
             steps{
                 sh '''
                     ls ${WORKSPACE}
-                    python ${WORKSPACE}/python/serverdetails.py
+                    python3 ${WORKSPACE}/python/serverdetails.py
                     echo "Server details fetched"
                 '''
             }
