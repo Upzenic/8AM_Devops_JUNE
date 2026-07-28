@@ -34,3 +34,4 @@ print(f"Disk Used     : {round(disk.used / (1024**3), 2)} GB")
 print(f"Disk Free     : {round(disk.free / (1024**3), 2)} GB")
 
 print("=" * 40)
+print("=" * 40)
