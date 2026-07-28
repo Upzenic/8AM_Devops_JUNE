@@ -1,0 +1,27 @@
+pipeline {
+
+    agent any
+
+
+
+    stages {
+
+        stage('Welcome') {
+
+            steps {
+
+                script {
+
+                    println "Hello Jenkins"
+
+                    println "Learning Groovy"
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
