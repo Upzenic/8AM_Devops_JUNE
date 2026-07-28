@@ -1,0 +1,29 @@
+peline {
+
+    agent any
+
+
+
+    stages {
+
+        stage('Backup Jenkins') {
+
+            steps {
+
+                sh '''
+
+                mkdir -p /home/jenkins_backup
+
+                tar -czf /home/jenkins_backup/jenkins_backup.tar.gz /var/lib/jenkins
+
+                echo "Backup completed"
+
+                '''
+
+            }
+
+        }
+
+    }
+
+}
