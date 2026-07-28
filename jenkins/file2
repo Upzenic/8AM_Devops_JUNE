@@ -1,0 +1,39 @@
+pipeline {
+
+    agent any
+
+
+
+    stages {
+
+        stage('Even Odd') {
+
+            steps {
+
+                script {
+
+                    def number = 15
+
+
+
+                    if(number % 2 == 0){
+
+                        println "Even"
+
+                    }
+
+                    else{
+
+                        println "Odd"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
