@@ -1,0 +1,95 @@
+pipeline {
+
+    agent any
+
+
+
+    stages {
+
+
+
+        stage('Master/Agent Server Details') {
+
+            steps {
+
+                sh '''
+
+                echo "server  details"
+
+
+
+                echo "Hostname:"
+
+                hostname
+
+
+
+                echo ""
+
+
+
+                echo "Current User:"
+
+                whoami
+
+
+
+                echo ""
+
+
+
+                echo "Operating System:"
+
+                uname -a
+
+
+
+                echo ""
+
+
+
+                echo "Memory:"
+
+                free -h
+
+
+
+                echo ""
+
+
+
+                echo "CPU:"
+
+                lscpu
+
+
+
+                echo ""
+
+
+
+                echo "Disk:"
+
+                df -h
+
+
+
+                echo ""
+
+
+
+                echo "IP Address:"
+
+                hostname -I
+
+                '''
+
+            }
+
+        }
+
+
+
+    }
+
+}
