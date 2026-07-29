@@ -1,0 +1,12 @@
+pipeline{
+     agent any
+         stages{
+             stage('node'){
+                steps{
+                    bat '''
+                          echo "this is node stage"
+                         '''
+                }
+             }
+         }
+}
