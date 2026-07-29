@@ -4,7 +4,7 @@ pipeline{
              stage('node'){
                 steps{
                     sh '''
-                          echo "this is node stage"
+                          echo "this is node stage `hostname`"
                          '''
                 }
              }
