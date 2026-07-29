@@ -3,7 +3,7 @@ pipeline{
          stages{
              stage('node'){
                 steps{
-                    bat '''
+                    sh '''
                           echo "this is node stage"
                          '''
                 }
