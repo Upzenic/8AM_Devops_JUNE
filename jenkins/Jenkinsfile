@@ -23,7 +23,7 @@ pipeline {
                 sh '''
                     ls ${WORKSPACE}
                     python3 ${WORKSPACE}/python/script.py
-                    echo "Deployment is successful"
+                    echo "Deployment is successful on host `hostname`"
                 '''
             }
         }
