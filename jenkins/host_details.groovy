@@ -1,6 +1,5 @@
 pipeline{
-    agent any
-    
+    agent { label 'Jenkins_Child' }
     stages{
         stage('Get Jenkins Master Server Details'){
             steps{
