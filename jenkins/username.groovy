@@ -1,6 +1,6 @@
 pipeline{
 
-agent Jenkins_Child
+agent { lable 'Jenkins_Child'}
 
 stages{
 
