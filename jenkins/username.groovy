@@ -12,7 +12,7 @@ stage('Run Python Script'){
 
 steps{
 
-  sh 'python3 ${SCRIPT_PATH} ${params.USER_NAME}'
+  sh "python3 ${SCRIPT_PATH} ${params.USER_NAME}"
 }
 }
 }
