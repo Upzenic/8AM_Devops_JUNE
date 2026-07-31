@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-name = input("Enter Your Name:")
+import sys
+name = sys.argv[1] if len(sys.argv)>1 else ""
 
 def validateName():
     listName = list(name)
