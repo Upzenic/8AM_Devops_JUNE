@@ -4,7 +4,7 @@ agent { label 'Jenkins_Child'}
 
 environment {SCRIPT_PATH='python/user_input.py'}
 
-parameters {string(name:'USER_NAME',defaultvalue:'Guest', description: 'Enter your name:')}
+parameters {string(name:'USER_NAME', defaultValue:'Guest', description: 'Enter your name:')}
 
 stages{
 
