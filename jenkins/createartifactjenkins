@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Create Artifact') {
+            steps {
+                bat 'echo Hello from Job1 > output.txt'
+                archiveArtifacts artifacts: 'output.txt'
+            }
+        }
+    }
+}
