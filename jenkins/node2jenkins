@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Call Job1') {
+            steps {
+                build job: 'Job1',
+                parameters: [
+                    string(name: 'NAME', value: 'Durga')
+                ]
+            }
+        }
+    }
+}
