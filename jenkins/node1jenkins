@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'NAME', defaultValue: '', description: 'Enter Name')
+    }
+
+    stages {
+        stage('Display Name') {
+            steps {
+                echo "Name is: ${params.NAME}"
+            }
+        }
+    }
+}
