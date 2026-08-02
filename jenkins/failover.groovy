@@ -19,12 +19,12 @@ def failoverPipeline(primaryNode, secondaryNode, command){
 
 pipeline{
 agent none
-environment {SCRIPT_PATH='jenkins/host_details.groovy'}
+environment {SCRIPT_PATH='python/failoverSample.py'}
 stages{
 stage('Call Method'){
 steps{
 script{
-failoverPipeline('node1', 'node2', "python3 ${SCRIPT_PATH}")
+failoverPipeline('Jenkins_Child', 'Jenkins_ChildNode_One', "python3 ${SCRIPT_PATH}")
 }
 }
 }
