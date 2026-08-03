@@ -4,6 +4,7 @@ def failoverPipeline(primaryNode, secondaryNode, command){
      timeout(time: 5, unit:'MINUTES'){
       echo "Attempting to run the script from ${primaryNode}"
       node(primaryNode) {
+       checkout scm
        sh command      
       }         
      }
