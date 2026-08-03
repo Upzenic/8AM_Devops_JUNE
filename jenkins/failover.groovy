@@ -29,7 +29,6 @@ failoverPipeline('Jenkins_Child', 'Jenkins_ChildNode_One', "python3 ${SCRIPT_PAT
 }
 }
 }
-}
 post {
 always{
   echo "The script has executed successfully"
@@ -40,4 +39,4 @@ failure{
 success{
 echo "The pipeline has succeeded"
 }
-}
+}}
