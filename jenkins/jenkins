@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+     label 'node_ssh'
+    }
     stages{
         stage('stage1'){
             steps{
