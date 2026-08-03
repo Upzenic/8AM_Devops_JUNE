@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+     label 'node_ssh'
+    }
     stages{
         stage('stage1'){
             steps{
@@ -18,7 +20,7 @@ pipeline {
         stage('deploy'){
             steps{
                 sh '''
-                    echo "Deployment is successful"
+                    echo "Deployment is successful on hostname `hostname`"
                 '''
             }
         }
