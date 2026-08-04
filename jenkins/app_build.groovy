@@ -1,0 +1,28 @@
+
+    stages{
+        stage('stage1'){
+            steps{
+                sh '''
+                        echo "This is stage1"
+                '''
+            }
+        }
+        
+        stage('stage2'){
+            steps{
+                sh '''
+                        echo "Stage2 is completedd"
+                '''
+            }
+        }
+        
+        stage('deploy'){
+            steps{
+                sh '''
+                    ls ${WORKSPACE}
+                    python3 ${WORKSPACE}/python/script.py
+                    echo "Deployment is successful on host `hostname`"
+                '''
+            }
+        }
+    }
