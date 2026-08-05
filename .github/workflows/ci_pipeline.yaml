@@ -1,0 +1,17 @@
+name: CI_Workflow
+on:
+  push:
+    branches:
+    - vishnu
+jobs:
+   build:
+      name: server_details
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v4
+      - name: first_step
+        run: |
+           echo "Calling First step in build job"
+           echo "Build complted successfully"
+        
