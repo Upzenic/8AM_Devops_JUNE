@@ -24,7 +24,7 @@ jobs:
            echo "Running Testing job"
            echo "The OS distro is... `cat /etc/os-release`"
    deploy:
-     runs-on: macos-latest-large
+     runs-on: ubuntu-slim
      steps:
        - name: Deploying an app
          run:
