@@ -44,7 +44,7 @@ pipeline{
                 }
             }
             steps{
-                echo "DEV Deployed"
+                echo "DEV Deployed..."
             }
         }
         stage('QA'){
