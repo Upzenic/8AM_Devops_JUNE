@@ -1,0 +1,92 @@
+pipeline{
+    agent any
+    parameters{
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['DEV','QA','PROD'],
+            description: 'Option selected will be deployed in the follwing environment'
+            )
+        string(
+            name:'VERSION',
+            defaultValue: '1.0',
+            description: 'enter the selected version'
+            )
+        booleanParam(
+            name : 'RESTART_SERVER',
+            defaultValue: false,
+            description: 'It is for restarting a system'
+            )
+        text(
+            name: 'TEXT',
+            defaultValue: '',
+            description: 'any feed back of it'
+            )
+        password(
+            name: 'PASSWORD',
+            defaultValue:'',
+            description: 'Enter the password'
+            )    
+    }
+    stages{
+        stage('Selection window'){
+            steps{
+                echo "${params.ENVIRONMENT}"
+                echo "${params.VERSION}"
+                echo "${params.RESTART_SERVER}"
+                echo "${params.TEXT}"
+                echo "${params.PASSWORD}"
+            }
+        }
+        stage('DEV'){
+            when{
+                expression{
+                    params.ENVIRONMENT == 'DEV'
+                }
+            }
+            steps{
+                echo "DEV Deployed"
+            }
+        }
+        stage('QA'){
+            when{
+                expression{
+                    params.ENVIRONMENT =='QA'
+                }
+            }
+            steps{
+                echo "QA Deployment"
+            }
+        }
+        stage('PROD'){
+            when{
+                expression{
+                    params.ENVIRONMENT == 'PROD'
+                }
+            }
+            steps{
+                echo "PROD Deployed"
+            }
+        }
+        stage('restart'){
+            when{
+                expression{
+                    params.RESTART_SERVER
+                }
+            }
+            steps{
+                echo "Restarting Server..."
+            }
+        }
+    }
+    post{
+        always{
+            echo "Pipeline Finished"
+        }
+        success{
+            echo "deployment succesfull"
+        }
+        failure{
+            echo "deployment failed"
+        }
+    }
+}
