@@ -3,6 +3,8 @@ on:
   push:
     branches:
     - vishnu
+  workflow_dispatch:
+    
 jobs:
    build:
       name: server_details
@@ -14,4 +16,16 @@ jobs:
         run: |
            echo "Calling First step in build job"
            echo "Build complted successfully"
-        
+   test:
+     runs-on: ubuntu-22.04
+     steps:
+       - name: Calling Test job
+         run: |
+           echo "Running Testing job"
+           echo "The OS distro is... `cat /etc/os-release`"
+   deploy:
+     runs-on: macos-latest-large
+     steps:
+       - name: Deploying an app
+         run:
+           echo "Deployment is succesful on `hostname`"
