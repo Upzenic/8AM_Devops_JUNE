@@ -8,7 +8,7 @@ on:
 jobs:
    build:
       name: server_details
-      runs-on: ubuntu-latest
+      runs-on: vishnu
 
       steps:
       - uses: actions/checkout@v4
