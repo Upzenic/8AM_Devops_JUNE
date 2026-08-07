@@ -8,13 +8,13 @@ on:
 jobs:
    build:
       name: server_details
-      runs-on: vishnu
+      runs-on: ubuntu-22.04
 
       steps:
       - uses: actions/checkout@v4
       - name: first_step
         run: |
-           echo "Calling First step in build job"
+           cho "Calling First step in build job"
            echo "Build complted successfully"
    test:
      runs-on: ubuntu-22.04
