@@ -1,15 +1,18 @@
 name: My Workflow
+
 on:
- push:
+  push:
     branches:
-          - bhavani
+      - bhavani
+
 jobs:
-    build:
-         runs-on: ubuntu-latest
-         steps:
-            -name: Checkout code
-             uses: actions/checkout@v4
-            -name: Build
-              run: echo "Build successful!"
-                 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: echo "Build successful!"                 
            
