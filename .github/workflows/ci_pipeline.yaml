@@ -1,9 +1,9 @@
 name: CI_Workflow
 on:
+  workflow_dispatch:
   push:
     branches:
     - vishnu
-  workflow_dispatch:
     
 jobs:
    build:
