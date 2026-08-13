@@ -10,18 +10,18 @@ jobs:
   runs-on: ubuntu-22.04-arm
   steps:
      - name: This is a build stage
-     - run: echo "Build Job Completed Successfully"
+       run: echo "Build Job Completed Successfully"
  test:
     runs-on: ubuntu-22.04-arm
     steps:
        - name: This is a testing phase
-       - run: echo "Testing has Completed Successfully"
+         run: echo "Testing has Completed Successfully"
  Deploy:
     runs-on: ubuntu-22.04-arm
     steps:
        - background: false
-       - name: This is a deployment phase
-       - run: echo "Deployment Completed Successfully"
+         name: This is a deployment phase
+         run: echo "Deployment Completed Successfully"
  
  
   
