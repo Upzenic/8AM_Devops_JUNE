@@ -1,0 +1,18 @@
+name: Demo of Matrix Strategy
+on:
+ workflow_dispatch:
+ push:
+   branches:
+     - priyanka
+jobs:
+ runOnMultipleOS:
+  runs-on: ${{matrix.os}}
+  strategy:
+    matrix: 
+      os: [ubuntu-22.04-arm, macos-13-xlarge, macos-15-xlarge]
+  steps:
+    - name: Running on multiple OS
+      run: echo "Running the script using multiple OS $(hostname)"
+      
+      
+      
