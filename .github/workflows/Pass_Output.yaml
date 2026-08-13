@@ -1,0 +1,25 @@
+name: Demo for Passing a Value
+on:
+ workflow_dispatch:
+ push:
+   branches:
+     - priyanka
+jobs:
+
+ passOnValuefromJob1:
+  runs-on: ubuntu-22.04-arm
+  steps:
+    - name: This is a step which outputs the value
+      id: A_job1
+      run: echo "message=Hello from GitHub Actions" >> $GITHUB_OUTPUT
+  outputs:
+    job1message: ${{steps.A_job1.outputs.message}}
+    
+ receiveValueatJob2:
+  runs-on: ubuntu-22.04-arm
+  needs: passOnValuefromJob1
+  steps:
+    - name: Receiving the input from passOnValuefromJob1
+      run: echo "The value received is:" ${{needs.passOnValuefromJob1.outputs.job1message}}
+      
+  
