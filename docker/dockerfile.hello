@@ -1,0 +1,6 @@
+
+FROM alpine:latest
+
+# Define the command that runs automatically when the container starts
+CMD ["echo", "Hello, docker! from abhishek"]
+
