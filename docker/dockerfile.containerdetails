@@ -1,0 +1,16 @@
+
+FROM alpine:latest
+
+# Install curl in case you want to test external network connectivity
+RUN apk add --no-cache curl
+
+# Print system, network, and environment details on startup
+CMD echo "=== CONTAINER DETAILS ===" && \
+    echo "Hostname:     $(hostname)" && \
+    echo "OS Version:   $(cat /etc/alpine-release)" && \
+    echo "IP Address:   $(hostname -i)" && \
+    echo "Kernel:       $(uname -r)" && \
+    echo "User:         $(whoami)" && \
+    echo "Date/Time:    $(date)" && \
+    echo "========================="
+
