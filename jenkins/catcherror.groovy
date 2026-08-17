@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     echo 'Running build...'
                     sh 'exit 1'   // simulate a build failure
                 }
@@ -14,7 +14,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     echo 'Running tests...'
                     sh 'exit 1'   // simulate a test failure, but don't fail the build
                 }
