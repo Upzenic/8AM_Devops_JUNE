@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: octopus-deployment
+  labels:
+    app: web
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  serviceName: "nginx"
+  replicas: 3
+  podManagementPolicy: OrderedReady
+  template:
+    metadata:
+      labels:
+        app: web
+        octopusexport: OctopusExport
+    spec:
+      containers:
+        - name: hello
+          image: vishnugonela/hello-world
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: web
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    name: web
+  selector:
+    app: web
+

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: centos:7
+        #command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+        command: ["/bin/bash", "-c", "while true; do date && echo hello&& sleep 5;done "]
+      restartPolicy: Never
+  backoffLimit: 4
+
+
