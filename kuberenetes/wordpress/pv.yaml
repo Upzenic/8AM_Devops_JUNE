@@ -12,7 +12,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   hostPath:
-    path: "/Users/gonelav/tmp/mysql_data"
+    path: "/mnt/new/mysql_data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

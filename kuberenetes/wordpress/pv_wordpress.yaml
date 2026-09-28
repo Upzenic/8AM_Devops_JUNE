@@ -12,7 +12,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   hostPath:
-    path: "/Users/gonelav/tmp/wp_data"
+    path: "/mnt/wp_data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

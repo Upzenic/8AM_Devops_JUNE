@@ -7,6 +7,8 @@ metadata:
 spec:
   ports:
     - port: 80
+      targetPort: 80
+      nodePort: 32243
   selector:
     app: wordpress
     tier: frontend
@@ -31,13 +33,19 @@ spec:
         app: wordpress
         tier: frontend
     spec:
-      containers:
-      - image: wordpress:4.8-apache
+      initContainers:  # Move the busybox loop here
+      - name: wait-for-mysql
+        image: busybox:1.36
+        command: ['sh', '-c', 'until nc -z -v -w3 mysql 3306; do echo "Waiting for MySQL database container to open port 3306..."; sleep 2; done;']
+      containers:      # Keep ONLY the real WordPress application engine here
+      - image: wordpress:latest
         name: wordpress
         env:
+        - name: WORDPRESS_DB_NAME
+          value: wordpress
         - name: WORDPRESS_DB_HOST
-          value: mysql.default.svc.cluster.local
-        - name: WORDPRESS_DB_USERNAME
+          value: mysql
+        - name: WORDPRESS_DB_USER       # Fixed to use modern WordPress env name standard
           value: root
         - name: WORDPRESS_DB_PASSWORD
           value: password
