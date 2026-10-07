@@ -1,0 +1,35 @@
+---
+- name: Terminate the Ansible-created EC2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    region: "us-east-1"
+    instance_name: "Ansible-Demo-Server1"
+
+  tasks:
+    - name: Find instances by Name tag
+      amazon.aws.ec2_instance_info:
+        region: "{{ region }}"
+        filters:
+          "tag:Name": "{{ instance_name }}"
+          instance-state-name: ["pending", "running", "stopping", "stopped"]
+      register: found
+
+    - name: Show instances that will be terminated
+      debug:
+        msg: "Will terminate: {{ found.instances | map(attribute='instance_id') | list }}"
+      - name: Terminate the instances
+      amazon.aws.ec2_instance:
+       region: "{{ region }}"
+        state: absent
+        instance_ids: "{{ found.instances | map(attribute='instance_id') | list }}"
+        wait: true
+      when: found.instances | length > 0
+
+    - name: Nothing to delete
+      debug:
+        msg: "No instance found with Name = {{ instance_name }}"
+      when: found.instances | length == 0
+...
