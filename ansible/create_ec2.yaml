@@ -1,0 +1,25 @@
+---
+- name: Provision an AWS EC2 Instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    ami_id: "ami-0d27e0fb3bac4d724" # Replace with a valid AMI ID for your region
+    instance_type: "t3.micro"
+    region: "us-east-1"
+    key_name: "abhishek"          # Replace with your actual AWS SSH key pair name
+    instance_name: "Ansible-Demo-Server1"
+
+  tasks:
+    - name: Launch the EC2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ instance_name }}"
+        key_name: "{{ key_name }}"
+        instance_type: "{{ instance_type }}"
+        image_id: "{{ ami_id }}"
+        region: "{{ region }}"
+        wait: true
+
+
+...
