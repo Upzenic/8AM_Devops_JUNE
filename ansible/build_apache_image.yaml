@@ -1,0 +1,61 @@
+---
+- name: Build Docker image with Apache and a Hello World app
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    app_dir: "/root/apache-hello"
+    image_name: "apache-hello"
+    image_tag: "v1"
+    container_name: "apache-hello-app"
+    host_port: 8080
+
+  tasks:
+    # ---------- Docker setup (Amazon Linux 2023) ----------
+    - name: Install Docker and pip
+      ansible.builtin.dnf:
+        name:
+          - docker
+          - python3-pip
+        state: present
+ - name: Start and enable Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Install Docker SDK for Python (needed by Ansible docker modules)
+      ansible.builtin.pip:
+        name: "docker==5.0.3"
+        state: present
+
+    # ---------- Application files ----------
+    - name: Create application directory
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create Hello World page
+      ansible.builtin.copy:
+        dest: "{{ app_dir }}/index.html"
+        mode: "0644"
+        content: |
+          <!DOCTYPE html>
+          <html>
+            <head><title>Hello World</title></head>
+            <body>
+              <h1>Hello World from Apache in Docker!</h1>
+              <p>Built with Ansible.</p>
+            </body>
+          </html>
+
+    - name: Create Dockerfile
+      ansible.builtin.copy:
+        dest: "{{ app_dir }}/Dockerfile"
+        mode: "0644"
+        content: |
+          FROM httpd:2.4
+          COPY index.html /usr/local/apache2/htdocs/index.html
+          EXPOSE 80
